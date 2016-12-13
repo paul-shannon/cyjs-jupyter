@@ -17,13 +17,12 @@ var CyjsModel = widgets.DOMWidgetModel.extend({
      });
 
 
-
     var CyjsView = widgets.DOMWidgetView.extend({
 
         createDiv: function(){
-            var outerDiv = $("<div id='cyOuterDiv' style='border:1px solid gray; height: 800px; width: 1000px'></div>");
-            var toolbarDiv = $("<div id='cyToolbarDiv' style='height: 30px; width: 1000px'></div>");
-            var cyDiv = $("<div id='cyDiv' style='height: 870px; width: 1000px'></div>");
+            var outerDiv = $("<div id='cyOuterDiv' style='border:1px solid gray; height: 800px; width: 97%'></div>");
+            var toolbarDiv = $("<div id='cyToolbarDiv' style='height: 30px; width: 97%'></div>");
+            var cyDiv = $("<div id='cyDiv' style='height: 100%; width: 97%'></div>");
             outerDiv.append(toolbarDiv);
             outerDiv.append(cyDiv);
             var cyWidget = this;
@@ -32,6 +31,7 @@ var CyjsModel = widgets.DOMWidgetModel.extend({
                 console.log("fitButton's notion of this:")
                 console.log(cyWidget.cy);
                 cyWidget.cy.fit(50);
+                cyWidget.cy.resize();
                });
             toolbarDiv.append(fitButton);
             var fitSelectedButton = $("<button>Fit Selected</button>").click(function(){
@@ -158,7 +158,6 @@ var CyjsModel = widgets.DOMWidgetModel.extend({
         render: function() { 
             console.log("entering render")
             this.$el.append(this.createDiv());
-            this.listenTo(this.model, 'change:frameWidth', this.frameDimensionsChanged, this);
             this.listenTo(this.model, 'change:frameHeight', this.frameDimensionsChanged, this);
             this.listenTo(this.model, 'change:msgFromKernel', this.dispatchRequest, this);
             var cyjsWidget = this;
@@ -302,15 +301,11 @@ var CyjsModel = widgets.DOMWidgetModel.extend({
            }, 
         
         frameDimensionsChanged: function(){
-           console.log("frameDimensionsChanged")
-           var newWidth  = this.model.get("frameWidth");
+           console.log("frameDimensionsChanged");
            var newHeight = this.model.get("frameHeight");
-           console.log("frame: " + newWidth + " x " + newHeight);
-           $("#cyOuterDiv").width(newWidth);
+           console.log("frameHeight: "  + newHeight);
            $("#cyOuterDiv").height(newHeight);
-           $("#cyToolbarDiv").width(newWidth);
-           $("#cyDiv").width(newWidth);
-           $("#cyDiv").height(newHeight - $("#cyToolbarDiv").height());
+           this.cy.resize();
            }, 
         
         events: {
