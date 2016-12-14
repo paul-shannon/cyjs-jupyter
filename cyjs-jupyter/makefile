@@ -3,8 +3,8 @@ default:
 	(cd js; webpack --config webpack.config.js)
 	pip install -e .
 	(cd js; npm install)
-	jupyter nbextension install --py cyjs
-	jupyter nbextension enable --py --sys-prefix cyjs
+	jupyter nbextension install --user --py cyjs
+	jupyter nbextension enable --user --py --sys-prefix cyjs
 	(cd examples/smallNetwork; jupyter notebook smallNetwork.ipynb)
 
 clean:
