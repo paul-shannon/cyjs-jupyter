@@ -73,7 +73,7 @@ var CyjsModel = widgets.DOMWidgetModel.extend({
             //cyWidget.cy.fit(100);
             console.log("--- about to call loadGraph")
             //cyjsWidget.loadGraph("priyanka.json");
-            cyjsWidget.loadStyle("style.js");
+            //cyjsWidget.loadStyle("style.js");
             //cyjsWidget.cy.layout({"name": "grid"});
             console.log("    back from loadGraph")
             cyjsWidget.cy.on("select", function(){

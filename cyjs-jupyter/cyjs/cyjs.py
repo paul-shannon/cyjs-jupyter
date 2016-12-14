@@ -134,7 +134,8 @@ class cyjs(widgets.DOMWidget):
       self. msgFromKernel = json.dumps({"cmd": "clearSelection", "status": "request",
                                         "callback": "", "payload": ""});
         
-    def setNodeAttributes(self, attributeName, nodeNames, values):
+       # g parameter unused, temporarily establishes symmetry with setEdgeAttributes
+    def setNodeAttributes(self, g, attributeName, nodeNames, values):
       self._resetMessage();
       self. msgFromKernel = json.dumps({"cmd": "setNodeAttributes", "status": "request",
                                         "callback": "", 
