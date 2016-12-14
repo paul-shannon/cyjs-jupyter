@@ -81,10 +81,8 @@ class cyjs(widgets.DOMWidget):
         return new_graph
 
     
-    def setSize(self, width, height):
-      self.status += "setSize(%d, %d)\n" % (width, height)
-      self.frameWidth = width
-      self.frameHeight = height
+    def setHeight(self, newHeight):
+      self.frameHeight = newHeight
         
     def fitSelected(self, margin=50):
       self.status += "entering fitSelected (%d)\n" % margin
@@ -144,7 +142,7 @@ class cyjs(widgets.DOMWidget):
                                                     "nodeNames": nodeNames,
                                                     "values": values}})
 
-    def setEdgeAttributes(self, attributeName, sourceNames, targetNames, edgeTypes, values):
+    def setEdgeAttributes(self, g, attributeName, sourceNames, targetNames, edgeTypes, values):
         # g to be a class member variable?
         # nodeMap also, with vigilance for modification of underlying graph?
         # id lookup a member function?
