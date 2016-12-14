@@ -5,7 +5,7 @@ default:
 	(cd js; npm install)
 	jupyter nbextension install --py cyjs
 	jupyter nbextension enable --py --sys-prefix cyjs
-	jupyter notebook cyjs.ipynb 
+	(cd examples/smallNetwork; jupyter notebook smallNetwork.ipynb)
 
 clean:
 	- rm -rf js/node_modules/*
